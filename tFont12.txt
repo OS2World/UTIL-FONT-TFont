@@ -1,0 +1,29 @@
+                          Upload Information Template for Hobbes.nmsu.edu
+                          ===============================================
+
+        Archive Filename: tFont12.zip
+       Short Description: Changes font in full screen OS/2 and DOS sesions.
+        Long Description: This update (v1.2/2001-01-25) works (v1.0 buffer
+crossed 64k boundary).  Includes a selection of fonts.  Compatible with
+40/80/132 column and 25/50/60 line modes (e.g. mode co132,60).
+
+      Proposed directory
+           for placement: /pub/os2/util/font/
+
+               Your name: Walter M. Gregg  
+           Email address: walt@w-gregg.juneau.ak.us
+    Program contact name: Tomas ™gren
+   Program contact email: stric*acc.umu.se (possibly; also possibly
+Tomas.Ogren*cs.umu.se, change * to @)
+
+             Program URL: http://math.berkeley.edu/~ilya/software/os2/
+
+      Would you like the
+   contact email address
+    included in listings? no
+
+Operating System/Version: Known to work in OS/2 Warp 3 fixpak 39.
+ Additional requirements: With SNAP graphics, must have a recent driver
+(v3.0.8 build 480 known to work; v2.0.0 build 339 known to fail).
+
+                Replaces: /pub/os2/util/font/tfont10.zip

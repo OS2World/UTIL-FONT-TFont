@@ -1,0 +1,144 @@
+
+    TFont v1.0, by Tomas ™gren
+    ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    What is this?
+    -------------
+    This is only a program to change the default font in fullscreen OS/2
+    sessions to one of your own. It currently reads raw fonts (like Linux
+    uses), ie a file with all 256 chars, and one bit per "pixel", 8 columns
+    and 16 rows (80x25 mode). The filesize is (256*8*16/8 =) 4096 bytes.
+    I have only tested it with 80x25 fonts, so I cannot say if it will work
+    with other sizes. All the program does, is to use the VioGetFont(),
+    fill the font-data buffer with the data from a file, and put it all back
+    with VioSetFont(). All other parts of the data (x-size, y-size etc) is
+    unchanged.
+    I included a DOS version too (not too much features in that one..)
+
+
+    NOTE:
+    -----
+    I have tested this program on a couple of computers, and gotten help to
+    test it by some people on IRC (See "Thanx" below for a list), and it seems
+    like some video-drivers doesn't support the Vio?etFont() call, and fails.
+    There is nothing I can do about this, except to bypass the drivers and
+    talk directly to the gfx-card, but then the font will change back as soon
+    as something changes videomode, and it isn't really that way you should
+    program in an OS (Im not counting DOS as a real OS). So, I won't do that.
+
+
+    What's included in the archive?
+    -------------------------------
+    Well.. There should be about 8 files..:
+    tFont.Doc           This thing
+    tFont.Exe           The OS/2 executable
+    tFont.c             The source
+    tFont.def           File used while compiling
+    Fonts.Zip           Some fonts ripped from Linux (Unpack the ones you like)
+    file_id.diz         Short desc for BBS's
+    Makefile            The makefile..
+    dosFont.Exe         Stupid Dos version, executable
+    dosFont.c           Stupid Dos version, source
+
+
+    How to run?
+    -----------
+    Usage:  tFont.exe [-?|-h|-d|-f] <Filename>
+            <Filename>          Installs the font <Filename>
+            -f                  Force yes on all questions
+            -d                  Display status only
+            -?                  This help
+            -h                  This help
+
+    With the parameter -d, it only queries which fontsize and total bytes
+    needed for the font, and prints it on the screen.
+
+    -f forces yes to all questions (currently only 1, if the bytes needed and
+    bytes in the file doesn't match), should normally never be used, but.
+
+
+    Example:
+    --------
+    tFont.Exe T.Fnt                        (Changes to T.Fnt, my favourite)
+
+    or
+    tFont.Exe T.Fnt >NUL         (If you want to run it at startup or so..)
+
+    I have included a couple of fonts which I have stolen (?) from Linux
+
+
+    Thanx to:
+    ---------
+    IBM for their great OS/2!
+    Bill G. for "640kb should be..."
+    Christoper, Erik, Magnus for testing my program.
+    Deek, roland and jez333 on IRC (#os2prog) for also testing...
+
+
+    Final word(s):
+    --------------
+    This program is e-mailware! (If you wish to use the program for more than
+    10 years, you have to send me an email.. :] )
+    Mail me if you like the program, hate the program, find a bug, missing
+    feature, nothing to do for the moment  etc..
+    I am also interrested in more fonts.. (80x25, 80x50 etc..)
+    "Textmode is still alive" (Should be sung with "James Brown is still alive"
+    melody)
+
+    Author:
+    -------
+    That's me.. Tomas ™gren
+    email:   stric@freenet.hut.fi
+    address: Tomas ™gren
+             Snipgr„nd 69
+             S-906 24 Ume†
+             Sweden
+    phone:   +46 90-186452
+
+Enhancements in v1.2:
+====================
+X) It works!  (A buffer was crossing 64K-boundary.)
+
+X) Supports arbitrary sizes of the charbox.
+
+X) new options -w to write a file, -s to choose the size (and possibly
+   the output filename) automatically (run without args to get more details).
+
+X) A script maketables.cmd will create font files for all the resolutions
+   your FS sessions support.
+
+X) A Perl script show_glyph.pl to visualize/edit the table is included.  Run
+
+    perl show_glyph.pl HH font-file.fnt > outfile
+
+   to emit the editable table, HH is the height of the font.  Import the
+   table by running 
+
+    perl show_glyph.pl -w HH font-file.fnt outfile
+
+Here is how to change the screen font to cp866  (or any other codepage)
+==============================================
+
+a) Find an OS/2 system which has codepage 866 enabled, or boot your system with
+
+    CODEPAGE=866,850
+
+   in config.sys.
+
+b) Change to a FS session, check whether 866 is active by running
+
+    chcp
+
+   if not, run
+
+    chcp 866
+
+c) Run maketables.cmd.  You may want to repeat this with the second codepage
+   prepared on the same system.
+
+d) Transfer the generated directory "dir" to your computer (or change the
+   CODEPAGE line in CONFIG.SYS back and reboot).  Now running
+
+    tFont -s x:/path/to/dir cp866.fnt
+
+   in a fullscreen session will switch the display font to cp866.

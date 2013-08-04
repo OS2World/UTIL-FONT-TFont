@@ -1,0 +1,3 @@
+NAME tFont WINDOWCOMPAT
+STACKSIZE 0x8FFFF
+DESCRIPTION "tFont v1.0, by Tomas ™gren. Changes the font in OS/2 FS VIO's."
